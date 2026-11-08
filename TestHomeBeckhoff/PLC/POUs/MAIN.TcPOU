@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{1687bf43-5a80-440d-81e6-b2aafa154f78}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+iCase : INT := 0;
+xOUput1 AT %Q* : BOOL;
+xOUput2 AT %Q* : BOOL;
+xOUput3 AT %Q* : BOOL;
+xOUput4 AT %Q* : BOOL;
+timetime : TON ;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[WHILE GVL.bEStopPressed DO
+GVL.iCounter := GVL.iCounter + 1;
+END_WHILE
+
+
+
+CASE iCase OF  
+	0: 
+	IF GVL.iCounter < 10 THEN
+		xOUput1 := TRUE;
+	END_IF
+	
+		IF GVL.iCounter > 10 AND GVL.iCounter < 30  THEN
+		xOUput2 := TRUE;
+	END_IF
+
+	IF GVL.iCounter > 30 AND GVL.iCounter < 100  THEN
+		xOUput3 := TRUE;
+	END_IF
+	IF  GVL.iCounter = 100 THEN
+		iCase := 1;
+	END_IF
+
+	1: GVL.iCounter := GVL.iCounter - 1;
+		IF GVL.iCounter < 10 THEN
+		xOUput3 := FALSE;
+	END_IF
+	
+		IF GVL.iCounter > 10 AND GVL.iCounter < 30  THEN
+		xOUput2 := FALSE;
+	END_IF
+
+	IF GVL.iCounter > 30 AND GVL.iCounter < 100  THEN
+		xOUput1 := FALSE;
+	END_IF
+	IF  GVL.iCounter = 0 THEN
+		iCase := 0;
+	END_IF
+
+END_CASE
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

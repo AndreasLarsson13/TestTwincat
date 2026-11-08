@@ -1,0 +1,13 @@
+# Visual Studio / TwinCAT temporära filer
+*.suo
+*.user
+*.user.*
+*.tcmproj.bak
+*.plcproj.bak
+_Boot/
+_CompileInfo/
+*.compileinfo
+*.bak
+[Bb]in/
+[Oo]bj/
+.vs/
